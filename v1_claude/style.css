@@ -1,0 +1,589 @@
+:root {
+    --plaster: #EDE6D6;
+    --plaster-dark: #DCD2BA;
+    --ink: #191D24;
+    --ink-soft: #4A4033;
+    --brick: #8C3B2E;
+    --brick-dark: #6B2B21;
+    --brass: #A87C3F;
+    --navy: #2B3A4A;
+    --cream: #F6F1E4;
+    --max: 480px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background: var(--plaster);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+}
+
+.page {
+    max-width: var(--max);
+    margin: 0 auto;
+    position: relative;
+    background: var(--plaster);
+    min-height: 100vh;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.08);
+}
+
+.eyebrow {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--brass);
+    font-weight: 700;
+}
+
+h1,
+h2,
+h3 {
+    font-family: 'Bitter', Georgia, serif;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1.12;
+}
+
+a {
+    color: var(--brick);
+}
+
+/* ---------- NAV ---------- */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    max-width: var(--max);
+    margin: 0 auto;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 18px;
+    background: rgba(237, 230, 214, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--brass);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.crest {
+    width: 30px;
+    height: 34px;
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crest span {
+    font-family: 'Bitter';
+    font-weight: 800;
+    color: var(--cream);
+    font-size: 0.85rem;
+}
+
+.brand-name {
+    font-family: 'Bitter';
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: 0.02em;
+}
+
+.burger {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.burger span {
+    width: 20px;
+    height: 2px;
+    background: var(--ink);
+    display: block;
+    transition: transform .25s ease, opacity .2s ease;
+}
+
+.burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.burger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 49;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 32px;
+    transform: translateY(-100%);
+    transition: transform .35s cubic-bezier(.65, 0, .35, 1);
+    max-width: var(--max);
+    margin: 0 auto;
+}
+
+.menu-overlay.open {
+    transform: translateY(0);
+}
+
+.menu-overlay a {
+    color: var(--cream);
+    text-decoration: none;
+    font-family: 'Bitter';
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(246, 241, 228, 0.15);
+    width: 100%;
+}
+
+.menu-overlay .sub {
+    font-family: 'Space Mono';
+    font-size: 0.7rem;
+    color: var(--brass);
+    margin-top: 28px;
+    letter-spacing: 0.1em;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+    position: relative;
+    min-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px 20px 40px;
+    background:
+        linear-gradient(180deg, rgba(36, 31, 24, 0.15) 0%, rgba(36, 31, 24, 0.35) 55%, rgba(36, 31, 24, 0.92) 100%),
+        repeating-linear-gradient(135deg, #C9BFA6 0px, #C9BFA6 2px, #D9D0B8 2px, #D9D0B8 4px);
+    overflow: hidden;
+}
+
+.photo-tag {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: 'Space Mono';
+    font-size: 0.62rem;
+    color: var(--cream);
+    background: rgba(36, 31, 24, 0.55);
+    padding: 4px 8px;
+    border-radius: 2px;
+    letter-spacing: 0.06em;
+}
+
+.hero-crest {
+    position: absolute;
+    top: 60px;
+    right: 24px;
+    width: 74px;
+    height: 84px;
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+    background: rgba(168, 124, 63, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hero-crest span {
+    font-family: 'Bitter';
+    font-weight: 800;
+    color: var(--navy);
+    font-size: 1.7rem;
+}
+
+.hero h1 {
+    color: var(--cream);
+    font-size: 2.5rem;
+    margin-top: 14px;
+}
+
+.hero p.tagline {
+    color: var(--plaster);
+    font-family: 'Source Serif 4';
+    font-style: italic;
+    font-size: 1.02rem;
+    margin-top: 10px;
+    max-width: 32ch;
+}
+
+.scroll-cue {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--cream);
+    font-size: 1.3rem;
+    opacity: 0.75;
+    animation: bob 1.8s ease-in-out infinite;
+}
+
+@keyframes bob {
+
+    0%,
+    100% {
+        transform: translate(-50%, 0);
+    }
+
+    50% {
+        transform: translate(-50%, 6px);
+    }
+}
+
+/* ---------- MURAL DAS ASSINATURAS (signature motif) ---------- */
+.mural {
+    height: 64px;
+    overflow: hidden;
+    position: relative;
+    background: var(--plaster-dark);
+    border-top: 1px solid var(--brass);
+    border-bottom: 1px solid var(--brass);
+    display: flex;
+    align-items: center;
+}
+
+.mural-track {
+    display: flex;
+    gap: 28px;
+    white-space: nowrap;
+    padding-left: 20px;
+    animation: scrollmural 26s linear infinite;
+}
+
+.mural span {
+    font-family: 'Space Mono';
+    font-weight: 700;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    opacity: 0.55;
+}
+
+.mural span:nth-child(3n) {
+    transform: rotate(-4deg);
+    color: var(--brick);
+}
+
+.mural span:nth-child(4n) {
+    transform: rotate(3deg);
+}
+
+@keyframes scrollmural {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ---------- SECTION GENERIC ---------- */
+section.block {
+    padding: 44px 20px;
+}
+
+.block h2 {
+    font-size: 1.55rem;
+    margin-top: 8px;
+    margin-bottom: 14px;
+}
+
+.block p {
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+}
+
+.block p+p {
+    margin-top: 12px;
+}
+
+.more-link {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid var(--brick);
+    padding-bottom: 2px;
+}
+
+/* ---------- HINO (songbook card) ---------- */
+.hino-wrap {
+    padding: 10px 20px 48px;
+}
+
+.hino-card {
+    background: var(--cream);
+    border-top: 4px double var(--brass);
+    border-bottom: 4px double var(--brass);
+    padding: 30px 22px;
+    position: relative;
+}
+
+.hino-ornament {
+    text-align: center;
+    color: var(--brass);
+    font-size: 1.3rem;
+    margin-bottom: 14px;
+}
+
+.hino-card blockquote {
+    font-style: italic;
+    font-size: 1.08rem;
+    color: var(--ink);
+    text-align: center;
+    line-height: 1.7;
+}
+
+.hino-card blockquote+blockquote {
+    margin-top: 18px;
+}
+
+.hino-caption {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Space Mono';
+    font-size: 0.68rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+}
+
+.hino-link {
+    display: block;
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* ---------- NÚMEROS ---------- */
+.numeros {
+    background: var(--plaster-dark);
+    padding: 44px 20px;
+}
+
+.numeros-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.stamp {
+    background: var(--plaster);
+    border: 2px solid var(--brass);
+    border-radius: 3px;
+    padding: 18px 10px;
+    text-align: center;
+    transform: rotate(-1.5deg);
+}
+
+.stamp:nth-child(2) {
+    transform: rotate(1.2deg);
+}
+
+.stamp:nth-child(3) {
+    transform: rotate(1deg);
+}
+
+.stamp:nth-child(4) {
+    transform: rotate(-0.8deg);
+}
+
+.stamp .num {
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 1.7rem;
+    color: var(--brick);
+    display: block;
+}
+
+.stamp .label {
+    font-family: 'Space Mono';
+    font-size: 0.6rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    display: block;
+    margin-top: 4px;
+}
+
+/* ---------- NAVEGAÇÃO VISUAL (postcards) ---------- */
+.nav-visual {
+    padding: 44px 0 44px 20px;
+}
+
+.nav-visual h2 {
+    padding-right: 20px;
+}
+
+.postcards {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 22px 20px 10px 0;
+    scroll-snap-type: x mandatory;
+}
+
+.postcards::-webkit-scrollbar {
+    display: none;
+}
+
+.postcard {
+    flex: 0 0 62%;
+    scroll-snap-align: start;
+    background: var(--cream);
+    border: 1px solid rgba(36, 31, 24, 0.12);
+    box-shadow: 3px 4px 0 rgba(36, 31, 24, 0.1);
+}
+
+.postcard:nth-child(odd) {
+    transform: rotate(-1.4deg);
+}
+
+.postcard:nth-child(even) {
+    transform: rotate(1.2deg);
+}
+
+.postcard-photo {
+    height: 130px;
+    background: repeating-linear-gradient(45deg, #B8A98A, #B8A98A 3px, #C9BFA6 3px, #C9BFA6 6px);
+    position: relative;
+}
+
+.postcard-photo .tag {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    font-family: 'Space Mono';
+    font-size: 0.55rem;
+    background: rgba(36, 31, 24, 0.6);
+    color: var(--cream);
+    padding: 3px 6px;
+}
+
+.postcard-body {
+    padding: 14px 14px 18px;
+}
+
+.postcard-body .eyebrow {
+    font-size: 0.6rem;
+}
+
+.postcard-body h3 {
+    font-size: 1.05rem;
+    margin-top: 4px;
+}
+
+.postcard-body p {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    margin-top: 6px;
+}
+
+.postcard-body .arrow {
+    display: inline-block;
+    margin-top: 10px;
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+/* ---------- CTA / FOOTER ---------- */
+.cta {
+    background: var(--brick);
+    color: var(--cream);
+    padding: 52px 24px 40px;
+    text-align: center;
+}
+
+.cta h2 {
+    color: var(--cream);
+    font-size: 1.5rem;
+}
+
+.cta p {
+    color: rgba(246, 241, 228, 0.85);
+    margin-top: 10px;
+    font-size: 0.94rem;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.btn {
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-family: 'Space Mono';
+    font-weight: 700;
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    padding: 14px;
+    border-radius: 3px;
+}
+
+.btn-primary {
+    background: var(--cream);
+    color: var(--brick-dark);
+}
+
+.btn-outline {
+    border: 1.5px solid var(--cream);
+    color: var(--cream);
+}
+
+.footer-meta {
+    margin-top: 40px;
+    font-family: 'Space Mono';
+    font-size: 0.62rem;
+    color: rgba(246, 241, 228, 0.6);
+    line-height: 1.8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .scroll-cue,
+    .mural-track {
+        animation: none;
+    }
+}
